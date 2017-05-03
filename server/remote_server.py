@@ -40,11 +40,9 @@ def toggle():
     target_device = data['device_name']
     print ("got state change request to: " + toggle_state + " for device: " + target_device)
 
-    # TODO send request to pi server
     clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientsocket.connect(('192.168.0.32', 8089))
+    clientsocket.connect(('137.112.104.162', 8089))
     clientsocket.send(str.encode("from remote"))
-
 
     return jsonify({'result' : 'success'})
 
