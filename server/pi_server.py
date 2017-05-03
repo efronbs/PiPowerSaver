@@ -2,14 +2,14 @@ import requests
 from flask import Flask
 from urllib.request import urlopen
 
-NAME = 'TEST_DEVICE'
-server_hostname = 'localhost:5000/';
+NAME = 'my_pi'
+server_hostname = 'http://198.199.72.246:8000/';
 
 def initialize():
     my_ip = urlopen('http://ip.42.pl/raw').read()
     payload = {'ip' : my_ip, 'device_name' : NAME}
-    r = requests.post(server_hostname+'register', data = payload)
-
+    # r = requests.post(server_hostname+'register', data = payload)
+    print my_ip
 
 if __name__ == '__main__':
     initialize()
