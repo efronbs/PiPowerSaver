@@ -28,7 +28,7 @@ def register():
     devices[device_name] = device_ip
 
     payload = {'state' : 'on'}
-    # r = requests.post(device_ip + ':8000/piRegister', json = payload)
+    r = requests.post(device_ip + ':8000/piRegister', json = payload)
 
     return jsonify({'result' : 'success'})
 
