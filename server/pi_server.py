@@ -1,7 +1,6 @@
 import requests
 import time
 import subprocess
-from flask import Flask
 from urllib.request import urlopen
 
 app = Flask(__name__)
@@ -17,10 +16,10 @@ def initialize():
 
     payload = {'ip' : my_ip, 'device_name' : NAME}
     r = requests.post(server_hostname+'piRegister', json = payload)
-    # while r.json()['result'] != 'success':
-    #     time.sleep(5)
-    #     print ("reattempting register")
-    #     r = requests.post(server_hostname+'piRegister', json = payload)
+    while r.json()['result'] != 'success':
+        time.sleep(5)
+        print ("reattempting register")
+        r = requests.post(server_hostname+'piRegister', json = payload)
     print ('registration succeeded')
 
 

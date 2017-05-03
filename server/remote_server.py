@@ -1,4 +1,5 @@
 import requests
+import socket
 from flask import Flask, request, jsonify
 # from urllib.request import urlopen
 
@@ -39,12 +40,13 @@ def toggle():
     target_device = data['device_name']
     print ("got state change request to: " + toggle_state + " for device: " + target_device)
 
-    # payload = {'state' : toggle_state}
-    r = requests.post('http://192.168.0.32:8000/') #, json = payload)
-    print (r)
+    # TODO send request to pi server
+    clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientsocket.connect(('192.168.0.32', 8089))
+    clientsocket.send(str.encode("from remote"))
+
 
     return jsonify({'result' : 'success'})
-    # TODO send request to pi server
 
 @app.route('/androidRegister', methods = ['POST'])
 def androidRegister():
