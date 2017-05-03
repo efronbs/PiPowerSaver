@@ -1,5 +1,6 @@
 import requests
 import time
+import subprocess
 from flask import Flask
 from urllib.request import urlopen
 
@@ -9,7 +10,10 @@ NAME = 'my_pi'
 server_hostname = 'http://198.199.72.246:8000/';
 
 def initialize():
-    my_ip = urlopen('http://ip.42.pl/raw').read().decode('utf-8')
+
+    p = subprocess.Popen(["hostname", "-I"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    my_ip = p.communicate().decode('utf-8')[:-2]
+
     payload = {'ip' : my_ip, 'device_name' : NAME}
     r = requests.post(server_hostname+'piRegister', json = payload)
     while r.json()['result'] != 'success':
