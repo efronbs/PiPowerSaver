@@ -19,6 +19,10 @@ def initialize():
     print ('registration succeeded')
 
 
+@app.route('/')
+def test():
+    return 'fuck you'
+
 @app.route('/piToggle', methods = ['POST'])
 def toggle():
     if request.method != 'POST':
