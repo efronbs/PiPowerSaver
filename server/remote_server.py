@@ -16,6 +16,9 @@ def register():
 
     if device_name in devices:
         return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
+
+    print ("PI REGISTER SUCCESS")
+    
     data = request.get_json()
     device_ip = data['ip']
     device_name = data['device_name']

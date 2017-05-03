@@ -10,7 +10,7 @@ server_hostname = 'http://198.199.72.246:8000/';
 def initialize():
     my_ip = urlopen('http://ip.42.pl/raw').read()
     payload = {'ip' : my_ip, 'device_name' : NAME}
-    # r = requests.post(server_hostname+'register', data = payload)
+    r = requests.post(server_hostname+'piRegister', data = payload)
     print (my_ip)
 
 if __name__ == '__main__':
