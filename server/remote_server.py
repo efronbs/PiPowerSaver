@@ -40,7 +40,7 @@ def toggle():
     print ("got state change request to: " + toggle_state + " for device: " + target_device)
 
     # payload = {'state' : toggle_state}
-    r = requests.post('192.168.0.32:8000/') #, json = payload)
+    r = requests.post('http://192.168.0.32:8000/') #, json = payload)
     print (r)
 
     return jsonify({'result' : 'success'})
