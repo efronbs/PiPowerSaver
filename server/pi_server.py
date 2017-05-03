@@ -15,15 +15,19 @@ def main():
 
     payload = {'ip' : my_ip, 'device_name' : NAME}
     r = requests.post(server_hostname+'piRegister', json = payload)
+    if r.json()['result'] == 'failure':
+        return
+
     while r.json()['result'] != 'success':
         time.sleep(5)
         print ("reattempting register")
         r = requests.post(server_hostname+'piRegister', json = payload)
+
     print ('registration succeeded')
 
     # now set up server
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    serversocket.bind((socket.gethostname(), 8089))
+    serversocket.bind(('', 8089))
     serversocket.listen(1) # become a server socket, maximum 5 connections
 
     while True:
