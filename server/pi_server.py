@@ -12,7 +12,8 @@ server_hostname = 'http://198.199.72.246:8000/';
 def initialize():
 
     p = subprocess.Popen(["hostname", "-I"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    my_ip, err = p.communicate().decode('utf-8')[:-2]
+    my_ip, err = p.communicate()
+    my_ip = my_ip.decode('utf-8')[:-2]
 
     payload = {'ip' : my_ip, 'device_name' : NAME}
     r = requests.post(server_hostname+'piRegister', json = payload)
