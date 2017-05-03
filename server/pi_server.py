@@ -1,7 +1,6 @@
 import requests
 import time
 import subprocess
-from urllib.request import urlopen
 
 NAME = 'my_pi'
 server_hostname = 'http://137.112.221.209:8000/';
