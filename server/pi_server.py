@@ -9,7 +9,7 @@ def initialize():
     my_ip = urlopen('http://ip.42.pl/raw').read()
     payload = {'ip' : my_ip, 'device_name' : NAME}
     # r = requests.post(server_hostname+'register', data = payload)
-    print my_ip
+    print (my_ip)
 
 if __name__ == '__main__':
     initialize()
