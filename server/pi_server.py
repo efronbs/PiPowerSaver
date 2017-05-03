@@ -2,6 +2,8 @@ import requests
 from flask import Flask
 from urllib.request import urlopen
 
+app = Flask(__name__)
+
 NAME = 'my_pi'
 server_hostname = 'http://198.199.72.246:8000/';
 
@@ -13,4 +15,4 @@ def initialize():
 
 if __name__ == '__main__':
     initialize()
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
