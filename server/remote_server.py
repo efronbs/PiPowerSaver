@@ -42,7 +42,7 @@ def toggle():
 
     clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     clientsocket.connect(('137.112.104.162', 8089))
-    clientsocket.send(str.encode("from remote"))
+    clientsocket.send(str.encode(toggle_state))
 
     return jsonify({'result' : 'success'})
 
