@@ -1,6 +1,7 @@
 import requests
 import time
 import subprocess
+import socket
 
 NAME = 'my_pi'
 server_hostname = 'http://137.112.89.123:8000/';
