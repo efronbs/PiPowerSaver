@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-devices = {"hello" : "fuck"};
+devices = {};
 
 @app.route('/')
 def test():
@@ -36,14 +36,17 @@ def toggle():
         return jsonify({'data' : 'incorrect request type', 'result' : 'failure'})
 
     data = request.get_json()
-    toggle_state = data['state']
-    target_device = data['device_name']
-    print ("got state change request to: " + toggle_state + " for device: " + target_device)
+    toggle_state = data['state'].encode('utf-8')
+    target_device = data['device_name'].encode('utf-8')
+    device_ip = devices[target_device]
+    print(device_ip)
+    print(type(device_ip))
+    # print ("got state change request to: " + toggle_state + " for device: " + target_device)
 
-    clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientsocket.connect(('137.112.104.162', 8089))
-    # print (type(toggle_state.encode('utf-8')))
-    clientsocket.send(str.encode(toggle_state.encode('utf-8')))
+    # clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # clientsocket.connect((, 8089))
+    # # print (type(toggle_state.encode('utf-8')))
+    # clientsocket.send(str.encode(toggle_state))
 
     return jsonify({'result' : 'success'})
 
