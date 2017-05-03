@@ -29,6 +29,7 @@ def register():
 
     payload = {'state' : 'on'}
     r = requests.post(device_ip + ':8000/', json = payload)
+    print (r)
 
     return jsonify({'result' : 'success'})
 
