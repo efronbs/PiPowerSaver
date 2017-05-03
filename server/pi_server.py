@@ -26,7 +26,7 @@ def initialize():
 
 @app.route('/')
 def test():
-    return 'fuck you'
+    return jsonify({'fuck' : 'you'})
 
 @app.route('/piToggle', methods = ['POST'])
 def toggle():
