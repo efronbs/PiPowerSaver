@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-devices = {};
+devices = {"hello" : "fuck"};
 
 @app.route('/')
 def test():
@@ -26,10 +26,6 @@ def register():
         return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
 
     devices[device_name] = device_ip
-
-    payload = {'state' : 'on'}
-    r = requests.post(device_ip + ':8000/', json = payload)
-    print (r)
 
     return jsonify({'result' : 'success'})
 
