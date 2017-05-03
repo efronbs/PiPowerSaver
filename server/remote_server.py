@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from urllib.request import urlopen
+# from urllib.request import urlopen
 
 app = Flask(__name__)
 
