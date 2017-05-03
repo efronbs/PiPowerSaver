@@ -3,7 +3,7 @@ import time
 import subprocess
 
 NAME = 'my_pi'
-server_hostname = 'http://137.112.221.209:8000/';
+server_hostname = 'http://137.112.89.123:8000/';
 
 def main():
 
