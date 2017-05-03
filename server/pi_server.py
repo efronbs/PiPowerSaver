@@ -24,8 +24,10 @@ def initialize():
     print ('registration succeeded')
 
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def test():
+    if request.method != 'POST':
+        return jsonify({'data' : 'incorrect request type', 'result' : 'failure'})
     return jsonify({'fuck' : 'you'})
 
 @app.route('/piToggle', methods = ['POST'])
