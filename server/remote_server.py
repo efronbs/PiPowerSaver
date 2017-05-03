@@ -20,8 +20,8 @@ def register():
 
     data = request.get_json()
 
-    device_ip = data['ip']
-    device_name = data['device_name']
+    device_ip = data['ip'].encode('utf-8')
+    device_name = data['device_name'].encode('utf-8')
 
     if device_name in devices:
         return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
@@ -43,10 +43,10 @@ def toggle():
     print(type(device_ip))
     # print ("got state change request to: " + toggle_state + " for device: " + target_device)
 
-    # clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # clientsocket.connect((, 8089))
-    # # print (type(toggle_state.encode('utf-8')))
-    # clientsocket.send(str.encode(toggle_state))
+    clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientsocket.connect((device_ip, 8089))
+    # print (type(toggle_state.encode('utf-8')))
+    clientsocket.send(str.encode(toggle_state))
 
     return jsonify({'result' : 'success'})
 
