@@ -2,11 +2,18 @@ import requests
 import time
 import subprocess
 import socket
+import RPi.GPIO as GPIO
 
 NAME = 'my_pi'
 server_hostname = 'http://137.112.89.123:8000/';
 
 def main():
+
+    #set up GPIO pin interface
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(24, GPIO.OUT)
+    GPIO.output(24, GPIO.LOW) #start low
 
     # do registeration - send a post to the server telling it your IP
     p = subprocess.Popen(["hostname", "-I"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -35,11 +42,13 @@ def main():
         buf = connection.recv(64)
         if len(buf) > 0:
             strForm = buf.decode('utf-8')
-            print ('got string: ' + strForm)
+            # print ('got string: ' + strForm)
             if (strForm == 'on'):
                 print ('got on signal')
+                GPIO.output(24, GPIO.HIGH)
             if (strForm == 'off'):
                 print ('got off signal')
+                GPIO.output(24, GPIO.LOW)
 
 
 if __name__ == '__main__':
