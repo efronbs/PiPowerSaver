@@ -14,15 +14,18 @@ def register():
     if request.method != 'POST':
         return jsonify({'data' : 'incorrect request type', 'result' : 'failure'})
 
-    if device_name in devices:
-        return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
+    print ("PI REGISTER GOT REQUEST")
 
-    print ("PI REGISTER SUCCESS")
-    
     data = request.get_json()
     device_ip = data['ip']
     device_name = data['device_name']
+
+    if device_name in devices:
+        return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
+
     devices[device_name] = device_ip
+
+    print ("PI REGISTER SUCCESS")
 
     return jsonify({'result' : 'success'})
 

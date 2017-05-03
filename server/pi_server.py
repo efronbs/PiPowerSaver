@@ -12,6 +12,13 @@ def initialize():
     payload = {'ip' : my_ip, 'device_name' : NAME}
     r = requests.post(server_hostname+'piRegister', data = payload)
     print (my_ip)
+    # print (r.json())
+
+@app.route('/piToggle', methods = ['POST'])
+def toggle():
+    if request.method != 'POST':
+        return jsonify({'data' : 'incorrect request type', 'result' : 'failure'})
+
 
 if __name__ == '__main__':
     initialize()
