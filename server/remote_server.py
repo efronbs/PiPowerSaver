@@ -42,8 +42,8 @@ def toggle():
 
     clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     clientsocket.connect(('137.112.104.162', 8089))
-    print (type(toggle_state.encode('utf-8')))
-    clientsocket.send(str.encode(toggle_state))
+    # print (type(toggle_state.encode('utf-8')))
+    clientsocket.send(str.encode(toggle_state.encode('utf-8')))
 
     return jsonify({'result' : 'success'})
 
