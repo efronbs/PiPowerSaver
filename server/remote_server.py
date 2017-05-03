@@ -38,6 +38,11 @@ def toggle():
     toggle_state = data['state']
     target_device = data['device_name']
     print ("got state change request to: " + toggle_state + " for device: " + target_device)
+
+    # payload = {'state' : toggle_state}
+    r = requests.post('192.168.0.32:8000/') #, json = payload)
+    print (r)
+
     return jsonify({'result' : 'success'})
     # TODO send request to pi server
 
