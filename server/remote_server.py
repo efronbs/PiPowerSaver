@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, request, jsonify
 # from urllib.request import urlopen
 
@@ -18,17 +19,16 @@ def register():
 
     data = request.get_json()
 
-    print (data)
-    #
-    # device_ip = data['ip']
-    # device_name = data['device_name']
-    #
-    # if device_name in devices:
-    #     return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
-    #
-    # devices[device_name] = device_ip
-    #
-    # print ("PI REGISTER SUCCESS")
+    device_ip = data['ip']
+    device_name = data['device_name']
+
+    if device_name in devices:
+        return jsonify({'result' : 'failure', 'data' : 'device name already exists'})
+
+    devices[device_name] = device_ip
+
+    payload = {'state' : 'on'}
+    r = requests.post(device_ip + ':8000/piRegister', json = payload)
 
     return jsonify({'result' : 'success'})
 
