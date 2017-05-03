@@ -3,7 +3,11 @@ from urllib.request import urlopen
 
 app = Flask(__name__)
 
-devices = {};
+devices = {"hello" : "fuck u", "goodbye" : "fuck u"};
+
+@app.route('/')
+def test():
+    return "fuck you"
 
 @app.route('/piRegister', methods=['POST'])
 def register():
@@ -26,7 +30,8 @@ def toggle():
 
     data = request.get_json()
     toggle_state = data['state']
-    print ("got state change request to: " + toggle_state)
+    target_device = data['device_name']
+    print ("got state change request to: " + toggle_state + " for device: " + target_device)
     return jsonify({'result' : 'success'})
     # TODO send request to pi server
 
@@ -43,4 +48,4 @@ def androidRegister():
         return jsonify({'result' : 'success', 'data' : 'none'})
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=False)
